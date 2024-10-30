@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: Creating paragraphs dynamically from data</title>
+		<script type="text/javascript" src="/d3.v7.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		
+			var dataset = [ 5, 10, 15, 20, 25 ];
+			
+			// Make a new paragraph for each value in dataset
+			d3.select("body")  		// Finds the body in the DOM, hands reference to next step in chain
+				.selectAll("p")		// Selects all paragraphs in the DOM. None exist yet so returns empty placeholder
+				.data(dataset)		// Counts and parses data values. Everything past this point is called 5 times
+				.enter()			// Creates a new placeholder element, thens hands off refernce to next step in chain
+				.append("p")		// Takes empty placeholder from enter and appends a p element. Then hands off a reference 
+									// to the p to the next step in chain
+				.text("New paragraph!");	// Inserts text in p
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: Using color in SVG</title>
+		<script type="text/javascript" src="/d3.v7.js"></script>
+		<style type="text/css">
+			/* No style rules here yet */		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//Width and height
+			var w = 500;
+			var h = 50;
+			
+			//Data
+			var dataset = [ 5, 10, 15, 20, 25 ];
+			
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+			
+			// Add a circle to the svg for each datum in the dataset
+			var circles = svg.selectAll("circle")
+			    .data(dataset)
+			    .enter()
+			    .append("circle");
+
+			// Set the cx,cy,r,fill attributes for the circles
+			circles.attr("cx", function(d, i) {
+						return (i * 50) + 25;   // x position of center of circle based on the index of the data value
+					})
+				   .attr("cy", h/2)             // y position of center of circle based on half svg height
+				   .attr("r", function(d) {     
+						return d;               
+				   })
+				   .attr("fill", "yellow")      // all circles filled with yellow
+				   .attr("stroke", "orange")
+				   .attr("stroke-width", function(d) {
+						return d/2;
+				   });
+
+		</script>
+	</body>
+</html>
